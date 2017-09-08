@@ -2,6 +2,9 @@
 FROM php:5-apache
 MAINTAINER Zérôme <jerome.carrot@gmail.com>
 
+# Add custom php.ini
+COPY php.ini /usr/local/etc/php/
+
 # Install PHP extensions
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
@@ -12,8 +15,8 @@ RUN docker-php-ext-install -j$(nproc) pdo_mysql mcrypt soap gd
 # Set apache configuration
 RUN rm /etc/apache2/sites-available/*
 RUN rm /etc/apache2/sites-enabled/*
+ADD vhost-magento.conf /etc/apache2/sites-available/
 RUN a2enmod rewrite
-ADD vhost-magento.conf /etc/apache2/sites-available/vhost-magento.conf
 RUN a2ensite vhost-magento.conf
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
