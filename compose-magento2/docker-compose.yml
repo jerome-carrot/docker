@@ -1,0 +1,26 @@
+version: '2'
+
+volumes:
+    mysql_data:
+
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+  apache:
+    image: apache-magento2
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./www:/var/www/html
+      - ./etc/dev/apache:/etc/apache2/sites-available
+    depends_on:
+      - mysql
+
