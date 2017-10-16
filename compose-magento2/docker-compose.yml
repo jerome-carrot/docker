@@ -14,7 +14,7 @@ services:
       MYSQL_USER: magento
       MYSQL_PASSWORD: magento
   apache:
-    image: apache-magento2
+    image: zerome/apache-magento2
     ports:
       - "80:80"
       - "443:443"
