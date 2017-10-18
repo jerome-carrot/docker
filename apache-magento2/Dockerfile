@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libxslt-dev
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/
-RUN docker-php-ext-install -j$(nproc) gd intl mcrypt pdo_mysql soap xsl zip
+RUN docker-php-ext-install -j$(nproc) bcmath gd intl mcrypt pdo_mysql soap xsl zip
 
 # Set apache configuration
 RUN rm /etc/apache2/apache2.conf

@@ -2,10 +2,10 @@
 
 USER_NAME=$1
 GROUP_NAME=$2
-WRITABLE_FOLDERS="www/app/etc www/var www/pub/media www/pub/static www/generated"
+WRITABLE_FOLDERS='www/var www/pub/static www/pub/media www/app/etc'
 
 if [ -z "$GROUP_NAME" ]; then
-	GROUP_NAME=www-data
+	GROUP_NAME='www-data'
 fi
 
 # Reset standard permissions on all directories and files
